@@ -1,9 +1,8 @@
-import 'dart:developer';
-
-import 'package:app/app/core/init/network_manager/network_manager.dart';
 import 'package:app/app/models/product.dart';
 import 'package:app/flavors/build_config.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/network/network_manager/network_manager.dart';
 
 class ProductsView extends StatefulWidget {
   const ProductsView({Key? key}) : super(key: key);

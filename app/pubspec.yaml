@@ -8,11 +8,24 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+#*----------------------------------- Network
+
   dio: ^4.0.6
+  #* detect if has internet connection
+  connectivity_plus: ^2.3.6
+
+#*----------------------------------- Loogging
+
   logger: ^1.1.0
   pretty_dio_logger: ^1.1.1
-  cupertino_icons: ^1.0.2
 
+#*----------------------------------- Cache, Storage
+
+  shared_preferences: ^2.0.15
+
+#*----------------------------------- Icons
+
+  cupertino_icons: ^1.0.2
 #* ############################################################################ dev_dependencies
 dev_dependencies:
   flutter_test:
