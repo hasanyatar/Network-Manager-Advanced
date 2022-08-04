@@ -15,6 +15,6 @@ class InternalServerErrorInterceptor extends Interceptor {
       }
     }
 
-    return null;
+    super.onError(err, handler);
   }
 }

@@ -1,8 +1,8 @@
-import 'package:app/app/models/product.dart';
+import 'package:app/data/models/product/product.dart';
 import 'package:app/flavors/build_config.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/network/network_manager/network_manager.dart';
+import '../../../../../core/network/network_manager/network_manager.dart';
 
 class ProductsView extends StatefulWidget {
   const ProductsView({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class _ProductsViewState extends State<ProductsView> {
   }
 
   Future<List<Product>> getProducts() async {
-    var responseData = await NetworkManager.instance.service.get('/productss');
+    var responseData = await NetworkManager.instance.service.get('/products');
 
     return [];
   }

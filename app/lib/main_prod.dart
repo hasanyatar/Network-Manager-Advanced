@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'flavors/build_config.dart';
 import 'flavors/enviroment.dart';
-import 'app/app.dart';
+import 'app.dart';
 
 void main() {
   EnvConfig prodConfig = EnvConfig(

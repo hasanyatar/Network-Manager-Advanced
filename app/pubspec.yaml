@@ -8,9 +8,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+#*----------------------------------- For Functional Programming
+  dartz: ^0.10.1
+
+#*----------------------------------- Object Equivalence
+  equatable: ^2.0.3
+
 #*----------------------------------- Network
 
   dio: ^4.0.6
+  retrofit: '>=3.0.0 <4.0.0'
   #* detect if has internet connection
   connectivity_plus: ^2.3.6
 
@@ -31,6 +39,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  retrofit_generator: '>=4.0.0 <5.0.0'
+  build_runner: ^2.2.0
+  json_serializable: '>4.4.0'
 #* ############################################################################ flutter
 flutter:
   uses-material-design: true

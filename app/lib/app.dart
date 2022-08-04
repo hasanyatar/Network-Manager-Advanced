@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pages/products/view/products_view.dart';
+import 'presentation/src/pages/products/view/products_view.dart';
 
 Widget initializeApp() {
   WidgetsFlutterBinding.ensureInitialized();

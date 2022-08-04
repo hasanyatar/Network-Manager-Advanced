@@ -8,7 +8,7 @@ class BadNetworkErrorInterceptor extends Interceptor {
 
   @override
   Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    return options;
+    super.onRequest(options, handler);
   }
 
   @override
@@ -16,6 +16,6 @@ class BadNetworkErrorInterceptor extends Interceptor {
     if (err.response == null && !await _networkConnectInfo.isConnectedWithNetwork()) {
       return BadNetworkApiError(dioError: err);
     }
-    return null;
+    super.onError(err, handler);
   }
 }
