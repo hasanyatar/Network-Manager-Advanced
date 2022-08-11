@@ -7,3 +7,6 @@
 <p align="center">
 <a href="/README.md" target="_blank"> English </a> | <a href="/README_KR.md" target="_blank"> 한국어 </a> | <a href="/README_DE.md" target="_blank"> Deutsch </a>| <a href="/README_ES.md" target="_blank"> Español</a> | <a href="/README_TR.md" target="_blank"> Turkish</a> | <a href="/README_ID.md" target="_blank"> Bahasa Indonesia</a> | <a href="/README_FR.md" target="_blank"> Français</a>
 </p>
+
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=hasanyatar)](https://github.com/anuraghazra/github-readme-stats)
