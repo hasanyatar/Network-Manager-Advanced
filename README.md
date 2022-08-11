@@ -2,7 +2,6 @@
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
-
   <a href="https://github.com/hasanyatar"><img alt="Profile" src="https://img.shields.io/github/followers/hasanyatar?label=Hasan%20YATAR&style=social"/></a>
 </p>
 <p align="center">
