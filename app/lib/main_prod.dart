@@ -1,20 +1,17 @@
-import 'package:app/flavors/env_config.dart';
+import 'app.dart';
+import 'flavors/flavors.dart';
 import 'package:flutter/material.dart';
 
-import 'flavors/build_config.dart';
-import 'flavors/enviroment.dart';
-import 'app.dart';
-
-void main() {
+void main() async {
   EnvConfig prodConfig = EnvConfig(
     appName: 'prod app',
     baseUrl: 'http://herokuapp.com',
-    shouldCollectCrashLog: true,
   );
 
-  BuildConfig.instantiate(
+  BuildConfig.instance.initialize(
     envType: Environment.production,
     envConfig: prodConfig,
   );
-  runApp(initializeApp());
+  initializeApp();
+  runApp(const MyApp());
 }

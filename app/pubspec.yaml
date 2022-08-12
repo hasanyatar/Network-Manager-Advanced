@@ -6,47 +6,40 @@ environment:
   sdk: ">=2.17.3 <3.0.0"
 #* ############################################################################ dependencies
 dependencies:
-  flutter:
-    sdk: flutter
+  connectivity_plus: ^2.3.6
+  cupertino_icons: ^1.0.2
+#*----------------------------- Used for Functional Programming
 
-#*----------------------------------- For Functional Programming
   dartz: ^0.10.1
 
-#*----------------------------------- Object Equivalence
-  equatable: ^2.0.3
-
-#*----------------------------------- Network
+#*----------------------------- Network Service
 
   dio: ^4.0.6
-  retrofit: '>=3.0.0 <4.0.0'
-  #* detect if has internet connection
-  connectivity_plus: ^2.3.6
 
-#*----------------------------------- Loogging
-
-  logger: ^1.1.0
-  pretty_dio_logger: ^1.1.1
-
-#*----------------------------------- Cache, Storage
-
+#*----------------------------- Local Service
+  
   shared_preferences: ^2.0.15
+  
+#*----------------------------- Local Service
 
-#*----------------------------------- Icons
-
-  cupertino_icons: ^1.0.2
+  equatable: ^2.0.3
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.0.1
+  get_it: ^7.2.0
+  pretty_dio_logger: ^1.1.1
 #* ############################################################################ dev_dependencies
 dev_dependencies:
+  retrofit: ">=3.0.0 <4.0.0"
+  retrofit_generator: '>=4.0.0 <5.0.0'
+  json_annotation: ^4.6.0
+  json_serializable: '>4.4.0'
+  build_runner: ^2.2.0
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-  retrofit_generator: '>=4.0.0 <5.0.0'
-  build_runner: ^2.2.0
-  json_serializable: '>4.4.0'
 #* ############################################################################ flutter
 flutter:
   uses-material-design: true
-
-#* ############################################################################ assets
+  #* ############################################################################ assets
   # assets:
-
-

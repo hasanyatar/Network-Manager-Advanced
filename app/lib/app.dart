@@ -1,10 +1,10 @@
+import 'package:app/app/injector.dart';
 import 'package:flutter/material.dart';
+import 'app/presentation/src/products_view.dart';
 
-import 'presentation/src/pages/products/view/products_view.dart';
-
-Widget initializeApp() {
+Future<void> initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
-  return const MyApp();
+  initializeDepedencies();
 }
 
 class MyApp extends StatelessWidget {

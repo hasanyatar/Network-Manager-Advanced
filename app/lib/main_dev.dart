@@ -1,18 +1,16 @@
-import 'package:app/flavors/env_config.dart';
-import 'package:flutter/material.dart';
-import 'flavors/build_config.dart';
-import 'flavors/enviroment.dart';
 import 'app.dart';
+import 'flavors/flavors.dart';
+import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   EnvConfig devConfig = EnvConfig(
     appName: 'dev app',
     baseUrl: 'https://dummyjson.com',
-    shouldCollectCrashLog: true,
   );
-  BuildConfig.instantiate(
+  BuildConfig.instance.initialize(
     envType: Environment.development,
     envConfig: devConfig,
   );
-  runApp(initializeApp());
+  await initializeApp();
+  runApp(const MyApp());
 }
