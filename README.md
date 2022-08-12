@@ -24,44 +24,32 @@
     * [Flavors Folder Structure in my project](#flavors-folder-structure-in-my-project) 
   * [Flavors configuration](#flavors-configuration)
   * [While running the application with flavor for Visual Studio Code](#while-running-the-application-with-flavor-for-visual-studio-code)
-- [Library / Dependency](#library---dependency)
-- [Running/Debugger](#running-debugger)
-  * [1. Mode Dev (Development)](#1-mode-dev--development-)
-  * [2. Mode Staging](#2-mode-staging)
-  * [3. Mode Prod (Production)](#3-mode-prod--production-)
-  * [Jika Pengguna VS Code](#jika-pengguna-vs-code)
-- [Features](#features)
-- [Library / Dependency](#library---dependency)
-- [Folder Structure](#folder-structure)
-- [Module](#module)
-  * [List Default Modules](#list-default-modules)
-    + [Shared Module:](#shared-module-)
-    + [Features Module:](#features-module-)
-  * [Create Module](#create-module)
-- [Global Config/Variable](#global-config-variable)
-  * [Panggil Global Variable](#panggil-global-variable)
-- [Penggunaan Translation/Localization](#penggunaan-translation-localization)
-  * [Create Item Translation](#create-item-translation)
-  * [Generate Translation](#generate-translation)
-  * [Get Item Translation](#get-item-translation)
-  * [Create Locale](#create-locale)
-  * [Set Main Locale](#set-main-locale)
-- [Generate Icon Launcher](#generate-icon-launcher)
-- [Generate Native Splash Screen](#generate-native-splash-screen)
-
+- [Library / Dependency](#library--dependency)
+  * [Dependencies](#dependencies)
+  * [Dev dependencies](#dev-dependencies)
+- [Folder Structure](#folder-structure)  
+- [Network-Manager with Dio](#network-manager-with-dio) 
+- [Interceptors](#interceptors) 
+  * [Auth Interceptor](#auth-interceptor)
+  * [Bad Network Error Interceptor](#bad-network-error-interceptor)
+  * [Internal Server Error Interceptor](#internal-server-error-interceptor)
+  * [Unauthorized Interceptor](#unauthorized-interceptor) 
+- [Network Connect Information](#network-connect-information)  
+- [Injector](#injector)  
+- [Testing](#testing)  
 
 ---
 
 
 ## Overview
 
-This repository is an Open-Source project intended for Boilerplate on Flutter that really supports your productivity, with lots of features that we have prepared instantly that can speed up your work process.
+This repository is an Open-Source project intended for `Network-Manager` on Flutter that really supports your productivity, with lots of features that we have prepared instantly that can speed up your work process. Also, I used `Clean Architecture`
 
 ## Getting Started
 
 ### Requirement
 
-Here are some things you need to prepare before this Boilerplate setup:
+Here are some things you need to prepare before this Network-Manager setup:
 
 1. Flutter SDK Stable (Latest Version) [Install](https://flutter.dev/docs/get-started/install)
 2. Android Studio [Install](https://developer.android.com/studio)
@@ -69,9 +57,9 @@ Here are some things you need to prepare before this Boilerplate setup:
 
 ### Setup
 
-To save your project based on this boilerplate, you need to do some of the steps you need to do. For a simple example of implementation, see the branch [example](https://github.com/kodingworks/flutter-works-boilerplate/tree/example/)
+To save your project based on this Network-Manager, you need to do some of the steps you need to do. For a simple example of implementation
 
-Here are the steps for setting up a Project with this Network Manager Advanced:
+Here are the steps for setting up a Project with this Network-Manager-Advanced :
 
 **Step 1:**
 
@@ -278,6 +266,237 @@ lib/
         ┃ ┣ unauthorized_interceptor.dart           
         ┗ network_manager.dart
 ```           
+  
+## Network-Manager with Dio
+```dart
+
+class NetworkManager {
+  final String _baseUrl = BuildConfig.instance.config.baseUrl;
+  late final Dio _dio;
+  Dio get service => _dio;
+
+  static NetworkManager instance = NetworkManager._();
+  NetworkManager._() {
+    _dio = Dio(_myBaseOptions());
+    _addInterseptors();
+  }
+  static const int _maxLineWidth = 90;
+  final PrettyDioLogger _prettyDioLogger = PrettyDioLogger(
+      requestHeader: true,
+      requestBody: false,
+      responseBody: BuildConfig.instance.environment == Environment.development,
+      responseHeader: false,
+      error: true,
+      compact: true,
+      maxWidth: _maxLineWidth);
+
+// * Add interseptors
+
+  void _addInterseptors() {
+    _dio.interceptors.add(_prettyDioLogger);
+    _dio.interceptors.add(AuthInterceptor());
+    _dio.interceptors.add(UnauthorizedInterceptor());
+    _dio.interceptors.add(BadNetworkErrorInterceptor());
+    _dio.interceptors.add(InternalServerErrorInterceptor());
+  }
+
+  Future<Response> post(String path, dynamic data) async {
+    try {
+      return await _dio.post(path, data: data);
+    } on DioError {
+      rethrow;
+    }
+  }
+
+  Future<Response> put(String path, dynamic data) async {
+    try {
+      return await _dio.put(path, data: data);
+    } on DioError {
+      rethrow;
+    }
+  }
+
+  Future<Response> delete(String path) async {
+    try {
+      return await _dio.delete(path);
+    } on DioError {
+      rethrow;
+    }
+  }
+
+  Future<Response> get(String path) async {
+    try {
+      return await _dio.get(path);
+    } on DioError {
+      rethrow;
+    }
+  }
+
+// * Configure Dio to use base url and headers.
+
+  BaseOptions _myBaseOptions() => BaseOptions(
+        baseUrl: _baseUrl,
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.json,
+        headers: _headers,
+        connectTimeout: 5000,
+        receiveTimeout: 3000,
+      );
+
+  Map<String, dynamic>? get _headers {
+    return null;
+  }
+}
+
+```
+## Interceptors
+A request interceptor is a piece of code that gets activated for every HTTP request sent and received by an application. It’s a layer in between clients and servers that modifies the request and responses, therefore, by intercepting the HTTP request, we can change the value of the request.
+#### Auth Interceptor
+```dart
+class AuthInterceptor extends Interceptor {
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    SharedPreferences instance = await SharedPreferences.getInstance();
+
+    if (instance.containsKey('token')) {
+      options.headers['Authorization'] = 'Bearer ${instance.getString('token')}';
+    }
+    super.onRequest(options, handler);
+  }
+}
+```
+#### Bad Network Error Interceptor
+```dart
+class BadNetworkErrorInterceptor extends Interceptor {
+  final NetworkConnectInformation _networkConnectInfo = NetworkConnectInformation.instance;
+
+  @override
+  Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    super.onRequest(options, handler);
+  }
+
+  @override
+  Future onError(DioError err, ErrorInterceptorHandler handler) async {
+    if (err.response == null && !await _networkConnectInfo.isConnectedWithNetwork()) {
+      return BadNetworkApiError(dioError: err);
+    }
+    super.onError(err, handler);
+  }
+}
+```
+#### Internal Server Error Interceptor
+```dart
+class InternalServerErrorInterceptor extends Interceptor {
+  @override
+  Future onError(DioError err, ErrorInterceptorHandler handler) async {
+    if (err.response != null) {
+      if (err.response!.statusCode != null &&
+          err.response!.statusCode! >= 500 &&
+          err.response!.statusCode! < 600) {
+        return InternalServerApiError(
+          dioError: err,
+        );
+      }
+    }
+
+    super.onError(err, handler);
+  }
+}
+```
+
+#### Unauthorized Interceptor
+```dart
+class UnauthorizedInterceptor extends Interceptor {
+  @override
+  Future onError(DioError err, ErrorInterceptorHandler handler) async {
+    if (err.response?.statusCode == 401 || err.response?.statusCode == 403) {
+      super.onError(err, handler);
+      return UnauthorizedApiError(dioError: err);
+    }
+
+    super.onError(err, handler);
+  }
+}
+```
+## Network Connect Information
+#### To check if there is internet or not
+```dart
+class NetworkConnectInformation implements BaseNetworkInfo {
+  NetworkConnectInformation._();
+  static NetworkConnectInformation? _instance;
+  static get instance => _instance ??= NetworkConnectInformation._();
+
+  @override
+  Future<bool> isConnectedWithWifi() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.wifi) {
+      return true;
+    }
+    return false;
+  }
+
+  @override
+  Future<bool> isConnectedWithMobile() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      return true;
+    }
+    return false;
+  }
+
+  @override
+  Future<bool> isConnectedWithNetwork() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      return true;
+    }
+    return false;
+  }
+}
+
+```
+## Injector
+#### We are using it to overcome Dependency Injection for Clean Architecture
+
+⚠️ Warning : Don't forget to run `initializeDepedencies` before main.dart
+##### Already available in the project
+```dart
+final injector = GetIt.instance;
+
+Future<void> initializeDepedencies() async {
+  //* Register Products
+  injector.registerSingleton<ProductDataSource>(ProductDataSource(NetworkManager.instance.service));
+  injector.registerSingleton<ProductRepository>(
+      ProductRepositoryImpl(injector.get<ProductDataSource>()));
+  injector.registerSingleton<ProductUseCase>(ProductUseCase(injector.get<ProductRepository>()));
+
+  //* Products Bloc
+  injector.registerFactory<ProductsBloc>(() => ProductsBloc(injector.get<ProductUseCase>()));
+}
+
+```
+## Testing
+I did a very simple test.
+```dart
+void main() {
+  setUp(() async {
+    await initializeDepedencies();
+  });
+  EnvConfig devConfig = EnvConfig(
+    appName: 'dev app',
+    baseUrl: 'https://dummyjson.com',
+  );
+  BuildConfig.instance.initialize(envType: Environment.development, envConfig: devConfig);
+
+  group('products', () {
+    test("should return a list of products", () async {
+      final data = injector.get<ProductUseCase>().call(null);
+      expect(Right(data), isNotNull);
+    });
+  });
+}
+```
   
   
   
