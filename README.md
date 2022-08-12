@@ -16,26 +16,33 @@
 
 In this boilerplate, we add several libraries to support productivity in the process. Here's a list of some of the libraries that are already available on this boilerplate along with their descriptions and versions:
 
-|Name                  |Deskripsi                                                                                        |Versi    |
+### Dependencies
+
+|Name                  |Description                                                                                     |Version    |
 |----------------------|-------------------------------------------------------------------------------------------------|---------|
-|[dartz](pub.dev/packages/dartz) |Used for Functional Programming. |`^0.10.1`   |
 |[dio](https://pub.dev/packages/dio) |As a library to handle very diverse http requests.|`^4.0.6`|
-|[equatable](pub.dev/packages/equatable) |Untuk mengatasi komparasi dari object.                                                           |`^1.2.6`   |
-|[flutter_bloc](pub.dev/packages/flutter_bloc) |Sebagai library untuk mengatasi segala State Management yang sangat flexible.                    |`^6.1.2`   |
-|[formz](pub.dev/packages/formz) |Digunakan untuk mengatasi validasi Form pada State Management yang mudah dan reusable.           |`^0.3.2`   |
-|[get_it](pub.dev/packages/get_it) |Library yang berfungi untuk mengatasi Dependency Injection.                                      |`^5.0.6`   |
-|[hive](pub.dev/packages/hive) |Sebagai DataBase utama yang mengatasi berbagai dynamic data, dengan performa yang sangat optimal.|`^1.4.4+1` |
-|[image_picker](pub.dev/packages/image_picker) |Untuk mengatasi pengambilan gambar dari camera maupun gallery.                                   |`^0.6.7+22`|
-|[rxdart](pub.dev/packages/rxdart) |Untuk mengatasi reactiveX untuk asynchronous programming                                         |`^0.25.0`  |
-|[url_launcher]((pub.dev/packages/url_launcher)) |Untuk mengatasi peluncuran berbagai URL/link ke berbagai aplikasi yang tersedia di App.          |`^5.7.10`  |
-|[package_info](pub.dev/packages/package_info) |Untuk mengambil dari data native App sekarang seperti versi, nama aplikasi, dll.                 |`^0.4.3+4` |
-|[firebase_auth](pub.dev/packages/firebase_auth) |Untuk mengatasi authentikasi dari firebase.                                                      |`^0.20.0+1`|
-|[firebase_core](pub.dev/packages/firebase_core) |Library utama dari Firebase SDK untuk Flutter                                                    |`^0.7.0`   |
-|[firebase_crashlytics](pub.dev/packages/firebase_crashlytics)  |Library yang berfungsi untuk mencatat berbagai masalah error code, BUG, yang tersedia dalam App. |`^0.4.0+1` |
-|[firebase_messaging](pub.dev/packages/firebase_messaging) |Untuk mengatasi notifikasi yang dari firebase console.                                           |`^8.0.0-dev.14` |
-|[firebase_performance](pub.dev/packages/firebase_performance) |Untuk mencatat performa aplikasi kita dan request http di berbagai device yang dikimkan ke Firebase Console.                                           |`^0.5.0+1` |
-|[firebase_remote_config](pub.dev/packages/firebase_remote_config) |Untuk mengambil data configurasi dari firebase console, dengan value yang dynamic.               |`^0.6.0`   |
-|[google_sign_in](pub.dev/packages/google_sign_in) |Mengatasi login melalui google berdasarkan dari firebase.      
+|[dartz](https://pub.dev/packages/dartz) |Used for Functional Programming. |`^0.10.1`|
+|[get_it](pub.dev/packages/get_it) |A library that functions to overcome Dependency Injection.|`^7.2.0`|   
+|[equatable](pub.dev/packages/equatable) |To solve the comparison of object.|`^2.0.3`|
+|[flutter_bloc](pub.dev/packages/flutter_bloc) |As a library to handle all very flexible State Management.|`^8.0.1`|
+|[pretty_dio_logger](https://pub.dev/packages/pretty_dio_logger) |Pretty Dio logger is a Dio interceptor that logs network calls in a pretty, easy-to-read format.|`^1.1.1`|
+|[connectivity_plus](https://pub.dev/packages/connectivity_plus) |This plugin allows Flutter apps to discover network connectivity and configure themselves accordingly. It can distinguish between cellular vs WiFi connection..|`^2.3.6`| 
+|[shared_preferences](https://pub.dev/packages/shared_preferences) |SharedPreferences is an API from Android SDK to store and retrieve application preferences. SharedPreferences are simply sets of data values that are held persistently.|`^2.0.15`| 
+
+### Dev dependencies
+
+|Name                  |Description                                                                                     |Version    |
+|----------------------|-------------------------------------------------------------------------------------------------|---------|
+|[retrofit_generator](https://pub.dev/packages/retrofit_generator) |The retrofit generator is a dio client generator using source_gen and inspired by Chopper and Retrofit.|`>=4.0.0 <5.0.0`|
+|[json_serializable](https://pub.dev/packages/json_serializable) |Automatically generate code for converting to and from JSON by annotating Dart classes. |`>4.4.0`|
+|[json_annotation](https://pub.dev/packages/json_annotation) |Classes and helper functions that support JSON code generation via the `json_serializable` package.|`^4.6.0`|   
+|[flutter_lints](https://pub.dev/packages/flutter_lints) |Recommended lints for Flutter apps, packages, and plugins to encourage good coding practices.|`^2.2.0`|
+|[build_runner](https://pub.dev/packages/build_runner) |A build system for Dart code generation and modular compilation.|`^2.2.0`|
+|[retrofit](https://pub.dev/packages/retrofit) |retrofit.dart is a dio client generator using source_gen and inspired by Chopper and Retrofit.|`>=3.0.0 <4.0.0`|
+
+
+
+   
 
 ## Folder Structure
 
