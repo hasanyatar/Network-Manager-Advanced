@@ -1,16 +1,179 @@
-[<h1 align="center">Network Service -Advanced </h1></br>
-<p align="center">
-  I used Clean Architecture in my project. As service I used <a href="https://pub.dev/packages/retrofit" target="_blank"> retrofit, </a><a href="https://pub.dev/packages/dio">dio, </a><a href="https://pub.dev/packages/json_serializable"> json_serializable</a>. And finally, I used </a><a href="https://pub.dev/packages/flutter_bloc"> bloc pattern</a> 
-🌠 Transform into a different view or activity using morphing animations using<a href="https://material.io/design/motion/the-motion-system.html" target="_blank"> Transformation motions </a> of new material version.
-</p>
-<p align="center">
-  <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
-  <a href="https://github.com/hasanyatar"><img alt="Profile" src="https://img.shields.io/github/followers/hasanyatar?label=Hasan%20YATAR&style=social"/></a>
-</p>
-<p align="center">
-<a href="/README.md" target="_blank"> English </a> | <a href="/README_TR.md" target="_blank"> Turkish</a></p>
-<h3 align="left">Languages and Tools: </h3>
-<p align="left"> <a href="https://dart.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg" alt="dart" width="24" height="24"/> Dart </a> <a href="https://flutter.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="flutter" width="24" height="24"/> Flutter </a>  </p>](url)
+# Network Service - Advanced
+
+ 
+[![style:lints](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart) 
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/kodingworks/flutter-works-boilerplate)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Bloc State Management](https://tinyurl.com/bloc-library)](https://github.com/felangel/bloc) 
+
+
+[![Profile](https://img.shields.io/github/followers/hasanyatar?label=follow&style=social)](https://github.com/hasanyatar)
+![GitHub stars](https://img.shields.io/github/stars/hasanyatar/Network-Manager-Advanced?style=social)
+![GitHub forks](https://img.shields.io/github/forks/hasanyatar/Network-Manager-Advanced?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/hasanyatar/Network-Manager-Advanced?style=social)
+
+## Table Of Content
+
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+  * [Requirement](#requirement)
+  * [Setup](#setup)
+- [Setup Firebase](#setup-firebase)
+  * [Android](#android)
+  * [IOS](#ios)
+- [Change Package Name](#change-package-name)
+- [Running/Debugger](#running-debugger)
+  * [1. Mode Dev (Development)](#1-mode-dev--development-)
+  * [2. Mode Staging](#2-mode-staging)
+  * [3. Mode Prod (Production)](#3-mode-prod--production-)
+  * [Jika Pengguna VS Code](#jika-pengguna-vs-code)
+- [Features](#features)
+- [Library / Dependency](#library---dependency)
+- [Folder Structure](#folder-structure)
+- [Module](#module)
+  * [List Default Modules](#list-default-modules)
+    + [Shared Module:](#shared-module-)
+    + [Features Module:](#features-module-)
+  * [Create Module](#create-module)
+- [Global Config/Variable](#global-config-variable)
+  * [Panggil Global Variable](#panggil-global-variable)
+- [Penggunaan Translation/Localization](#penggunaan-translation-localization)
+  * [Create Item Translation](#create-item-translation)
+  * [Generate Translation](#generate-translation)
+  * [Get Item Translation](#get-item-translation)
+  * [Create Locale](#create-locale)
+  * [Set Main Locale](#set-main-locale)
+- [Generate Icon Launcher](#generate-icon-launcher)
+- [Generate Native Splash Screen](#generate-native-splash-screen)
+
+
+---
+
+
+## Overview
+
+This repository is an Open-Source project intended for Boilerplate on Flutter that really supports your productivity, with lots of features that we have prepared instantly that can speed up your work process.
+
+## Getting Started
+
+### Requirement
+
+Here are some things you need to prepare before this Boilerplate setup:
+
+1. Flutter SDK Stable (Latest Version) [Install](https://flutter.dev/docs/get-started/install)
+2. Android Studio [Install](https://developer.android.com/studio)
+3. Visual Studio Code (Optional) [Install](https://code.visualstudio.com/)
+
+### Setup
+
+To save your project based on this boilerplate, you need to do some of the steps you need to do. For a simple example of implementation, see the branch [example](https://github.com/kodingworks/flutter-works-boilerplate/tree/example/)
+
+Here are the steps for setting up a Project with this Network Manager Advanced:
+
+**Step 1:**
+
+In this step you need to download (cloning) files from this repository to your local computer:
+
+```bash
+git clone http://github.com/kodingworks/flutter-works-boilerplate.git
+```
+
+Atau 
+
+```bash
+git clone git@github.com:kodingworks/flutter-works-boilerplate.git
+```
+
+**Step 2:**
+
+Langkah selanjutnya buka folder yang telah di unduh/clone ke aplikasi cli seperti `bash`, `cmd`, `terminal` . 
+
+Dan kemudian jalankan perintah ini ke console:
+
+```bash
+flutter pub get
+```
+
+## Flavors
+### What is the Flavor ?
+
+Flavors are so amazing. Just like how an ice-cream has different flavors and everyone loves them, your application may have different flavors too! By using flavors, you can create different versions of your app and hence it’s quite useful. This means you can generate different versions or variants of your app using a single code-base.
+### Why do we need Flavors ?
+They are just comfortable. They let you define some build configuration and switch them as you want. For example, you could have one flavor for development, and one for production. You can set different URL for API calls or different icons and app names. With a click you’re ready to develop or to release your great application.
+#### Flavors Folder Structure in my project
+```
+├─ flavors/
+│  ├─ build_config.dart
+│  ├─ env_config.dart
+│  └─ enviroment.dart   
+├─ main_dev.dart
+└─ main_prod.dart
+```
+### Flavors configuration
+After opening build.gradle. As shown below, We need to define a name for flavor dimensions. After that, both development and production need to configure.
+Dimension is the flavor dimensions. Res Value is the name of the app And the application suffix is just an extension. I hope I could tell this topic  :)
+
+android/app/build.gradle
+
+In build.gradle
+```gradle
+flavorDimensions "default"
+    productFlavors {
+        dev {
+            dimension "default"
+            resValue 'string', 'app_name', 'Dev'
+            applicationIdSuffix ".dev"
+            versionNameSuffix ".dev"
+        }
+        prod {
+            dimension "default"
+            resValue 'string', 'app_name', 'Prod'
+            applicationIdSuffix ".prod"          
+            versionNameSuffix ".prod"
+        }
+    }           
+```
+### while running the application with flavor for Visual Studio Code
+#### In terminal
+Development
+```bash
+flutter run -t lib/main_dev.dart — flavor dev 
+```
+Production
+```bash
+flutter run -t lib/main_dev.dart — flavor prod
+```
+#### Also, You can configure launch.json according to the flavor
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "development",
+            "program": "lib/main_dev.dart",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "production",
+            "program": "lib/main_prod.dart",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "prod"
+            ]
+        }
+    ]
+}
+```
+
+#### Create                                                               
+---
 
 ## Library / Dependency
 
