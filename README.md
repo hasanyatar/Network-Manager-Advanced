@@ -18,10 +18,13 @@
 - [Getting Started](#getting-started)
   * [Requirement](#requirement)
   * [Setup](#setup)
-- [Setup Firebase](#setup-firebase)
-  * [Android](#android)
-  * [IOS](#ios)
-- [Change Package Name](#change-package-name)
+- [Flavors](#flavors)
+  * [What is the flavor ?](#what-is-the-flavor)
+  * [Why do we need flavors ?](#why-do-we-need-flavors)
+    * [Flavors Folder Structure in my project](#flavors-folder-structure-in-my-project) 
+  * [Flavors configuration](#flavors-configuration)
+  * [While running the application with flavor for Visual Studio Code](#while-running-the-application-with-flavor-for-visual-studio-code)
+- [Library / Dependency](#library---dependency)
 - [Running/Debugger](#running-debugger)
   * [1. Mode Dev (Development)](#1-mode-dev--development-)
   * [2. Mode Staging](#2-mode-staging)
@@ -75,30 +78,31 @@ Here are the steps for setting up a Project with this Network Manager Advanced:
 In this step you need to download (cloning) files from this repository to your local computer:
 
 ```bash
-git clone http://github.com/kodingworks/flutter-works-boilerplate.git
+git clone https://github.com/hasanyatar/Network-Manager-Advanced.git
 ```
 
-Atau 
+Or 
 
 ```bash
-git clone git@github.com:kodingworks/flutter-works-boilerplate.git
+git clone git@github.com:hasanyatar/Network-Manager-Advanced.git
 ```
 
 **Step 2:**
 
-Langkah selanjutnya buka folder yang telah di unduh/clone ke aplikasi cli seperti `bash`, `cmd`, `terminal` . 
+The next step is to open the folder that has been downloaded/cloned into a cli application such as `bash`, `cmd`, `terminal`. 
 
-Dan kemudian jalankan perintah ini ke console:
+And then run this command to console:
 
 ```bash
 flutter pub get
 ```
 
 ## Flavors
-### What is the Flavor ?
+
+### What is the flavor
 
 Flavors are so amazing. Just like how an ice-cream has different flavors and everyone loves them, your application may have different flavors too! By using flavors, you can create different versions of your app and hence it’s quite useful. This means you can generate different versions or variants of your app using a single code-base.
-### Why do we need Flavors ?
+### Why do we need flavors
 They are just comfortable. They let you define some build configuration and switch them as you want. For example, you could have one flavor for development, and one for production. You can set different URL for API calls or different icons and app names. With a click you’re ready to develop or to release your great application.
 #### Flavors Folder Structure in my project
 ```
@@ -172,8 +176,8 @@ flutter run -t lib/main_dev.dart — flavor prod
 }
 ```
 
-#### Create                                                               
----
+                                                              
+
 
 ## Library / Dependency
 
