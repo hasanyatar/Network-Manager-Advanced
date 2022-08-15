@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUp(() async {
-    await initializeDepedencies();
+    await initializeDependencies();
   });
   EnvConfig devConfig = EnvConfig(
     appName: 'dev app',
