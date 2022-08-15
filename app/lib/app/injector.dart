@@ -9,7 +9,7 @@ import 'presentation/bloc/products_bloc.dart';
 
 final injector = GetIt.instance;
 
-Future<void> initializeDepedencies() async {
+Future<void> initializeDependencies() async {
   //* Register Products
   injector.registerSingleton<ProductDataSource>(ProductDataSource(NetworkManager.instance.service));
   injector.registerSingleton<ProductRepository>(
