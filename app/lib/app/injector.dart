@@ -1,10 +1,10 @@
 import 'package:app/app/core/network/network_manager/network_manager.dart';
-import 'package:app/app/data/datasource/product/product_data_source.dart';
 import 'package:app/app/data/repository/products/products_repository_impl.dart';
 import 'package:app/app/domain/repository/products_repository.dart';
 import 'package:app/app/domain/usecase/products_usecase.dart';
 import 'package:get_it/get_it.dart';
 
+import 'data/datasource/remote/product/product_data_source.dart';
 import 'presentation/bloc/products_bloc.dart';
 
 final injector = GetIt.instance;
